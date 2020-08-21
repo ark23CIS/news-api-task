@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.ul-menu {
+  display: flex;
+  justify-content: space-between;
+  background-color: orangered;
+  color: #fff;
+}
+
+.ul-menu__item {
+  padding-right: 15px;
+}
