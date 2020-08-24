@@ -3,8 +3,7 @@
   padding: 0;
 }
 
-ul,
-li {
+ul, li {
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -13,7 +12,7 @@ li {
 .header {
   display: flex;
   width: 100%;
-  background-color: orangered;
+  background-color: #383838;
   justify-content: space-around;
   align-items: center;
 }
@@ -25,12 +24,31 @@ li {
 }
 
 .ul-menu__item {
-  padding: 15px 0;
-  padding-right: 15px;
+  padding: 15px 30px;
   text-transform: capitalize;
+  margin: 0;
+}
+
+.ul-menu__item-link:hover {
+  color: #b297c4;
+  text-decoration: none;
+}
+
+.ul-menu__item-link--active {
+  background-color: orange;
 }
 
 .ul-menu__item-link {
   text-decoration: none;
   color: #fff;
+}
+
+.post {
+  flex: 0 0 30%;
+  text-align: center;
+}
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
 }
