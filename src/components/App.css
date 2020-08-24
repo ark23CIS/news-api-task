@@ -15,6 +15,7 @@ li {
   width: 100%;
   background-color: orangered;
   justify-content: space-around;
+  align-items: center;
 }
 
 .ul-menu {
@@ -24,6 +25,12 @@ li {
 }
 
 .ul-menu__item {
+  padding: 15px 0;
   padding-right: 15px;
   text-transform: capitalize;
+}
+
+.ul-menu__item-link {
+  text-decoration: none;
+  color: #fff;
 }

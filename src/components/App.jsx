@@ -7,10 +7,18 @@ import Header from "./Header";
 
 export default function App() {
   const dispatch = useDispatch();
-  const articles = useSelector((state) => state);
+  let articles = useSelector((state) => state);
   console.log(articles);
   React.useEffect(() => {
+    let input = document.querySelector(".search-input");
+    console.log(input);
+    input.addEventListener("change", (e) => {
+      console.log(e.target.value);
+    });
     dispatch(fetchNews("general"));
+    return () => {
+      input.removeEventListener("change");
+    };
   }, [dispatch]);
   return (
     <>
