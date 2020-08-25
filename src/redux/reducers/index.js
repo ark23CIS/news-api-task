@@ -1,4 +1,6 @@
-export default function reducer(state = [], action) {
+import { combineReducers } from 'redux';
+
+function articles(state = [], action) {
   switch (action.type) {
     case "SET_NEWS":
       state = [...action.payload];
@@ -8,3 +10,17 @@ export default function reducer(state = [], action) {
   }
   return state;
 }
+
+function query(state = '', action) {
+  switch (action.type) {
+    case "SET_QUERY":
+      state = action.payload;
+      break;
+    default:
+      break;
+  }
+  return state;
+}
+
+export default combineReducers({articles, query})
+

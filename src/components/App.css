@@ -47,9 +47,22 @@ li {
 .post {
   height: 100%;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 .posts {
   display: flex;
   flex-wrap: wrap;
+}
+
+.card__item {
+  padding-top: 20px;
+}
+
+.article-card {
+  justify-content: space-around;
+}
+
+.card__date {
+  padding: 30px 0;
 }

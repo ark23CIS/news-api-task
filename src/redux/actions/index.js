@@ -17,3 +17,8 @@ export const setNews = (payload) => ({
   type: "SET_NEWS",
   payload,
 });
+
+export const setQuery = (query) => ({
+  type: "SET_QUERY",
+  payload: query
+})

@@ -1,25 +1,39 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { fetchNews } from "../redux/actions";
-import { useSelector, useDispatch } from "react-redux";
+import { fetchNews, setNews } from "../redux/actions";
+import { connect } from "react-redux";
 import Home from "./pages/Home";
 
-export default function App() {
-  const dispatch = useDispatch();
-  let articles = useSelector((state) => state);
-  const onChange = React.useCallback((e) => {
-    console.log(articles);
-  }, []);
-  console.log(articles);
-  React.useEffect(() => {
-    let input = document.querySelector(".search-input");
-    console.log(articles, "from useEffect");
-    input.addEventListener("change", onChange);
-    dispatch(fetchNews("general"));
-    return () => {
-      input.removeEventListener("change", onChange);
-    };
-  }, [dispatch]);
-  return <Home articles={articles} />;
+class App extends React.PureComponent {
+  state = {
+    query: this.props.query
+  }
+
+  filterArticles = (articles) => {
+    let input = this.props.query;
+    let dividers = ' ,.!;:&$?<>';
+    input = input.toLowerCase().split(new RegExp(`[ ${dividers}]`));
+    return articles.reduce((p,c) => {
+      let words = `${c.title} ${c.content} ${c.author}`.toLowerCase().split(new RegExp(`[ ${dividers}]`));
+      console.log(words)
+      let counter = 0;
+      for (let i = 0; i < input.length; i++) {
+        if (words.includes(input[i])) counter++;
+      }
+      return counter === input.length ? [...p, c] : p;
+    }, [])
+  }
+  
+  componentDidMount() {
+    this.props.fetchNews("general");
+  }
+
+  render() {
+    return <Home articles={this.filterArticles(this.props.articles)} />;
+  }
 }
+
+const mapStateToProps = (state) => ({ articles: state.articles, query: state.query });
+
+export default connect(mapStateToProps, { fetchNews, setNews })(App);

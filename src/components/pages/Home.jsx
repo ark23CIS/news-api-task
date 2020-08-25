@@ -9,16 +9,18 @@ function Home({ articles }) {
   return (
     <>
       <Header />
-      <Grid container spacing={2} alignItems="stretch">
-        <div className="posts">
-          {articles &&
-            articles.map((post, i) => (
-              <Grid key={`${i}_${post.title}`} item xs={12} sm={4}>
-                <Post key={`${i}_${post.author}`} {...post} />
-              </Grid>
-            ))}
-        </div>
-      </Grid>
+      <Container>
+        <Grid container alignItems="stretch">
+          <div className="posts">
+            {articles &&
+              articles.map((post, i) => (
+                <Grid key={`${i}_${post.title}`} item xs={12}>
+                  <Post key={`${i}_${post.author}`} {...post} />
+                </Grid>
+              ))}
+          </div>
+        </Grid>
+      </Container>
     </>
   );
 }

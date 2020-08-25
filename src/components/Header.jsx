@@ -1,14 +1,27 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { fetchNews } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNews, setQuery } from "../redux/actions";
 import { Link } from "react-router-dom";
-import { Form, FormControl, Button } from "react-bootstrap";
 
 export default function Header() {
   const dispatch = useDispatch();
+  const articles = useSelector(state => state.articles)
   const [activePage, setActivePage] = React.useState("general");
+  const searchRef = React.useRef();
+  const onChange = React.useCallback(
+    (e) => {
+      e.preventDefault();
+      var key = e.keyCode || e.which;
+      if (key !== 13) return;
+      console.log(e.target.value, articles);
+      dispatch(setQuery(e.target.value))
+    },
+    [dispatch, articles]
+  );
   const onClickCategory = React.useCallback(
     (e) => {
+      dispatch(setQuery(''));
+      searchRef.current.value = '';
       let nodes = Array.from(e.target.parentNode.parentNode.childNodes);
       nodes.forEach((el) => el.classList.remove("ul-menu__item-link--active"));
       e.target.parentNode.classList.add("ul-menu__item-link--active");
@@ -77,27 +90,8 @@ export default function Header() {
             </li>
           </Link>
         </ul>
-        <Form inline>
-          <FormControl
-            type="text"
-            placeholder="Search"
-            className="mr-sm-2 search-input"
-          />
-          <Button variant="outline-info">Search</Button>
-        </Form>
+        <input type="text" onKeyUp = {onChange} ref={searchRef}/>
       </header>
-      {/* <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/">Features</Nav.Link>
-          <Nav.Link href="/">Pricing</Nav.Link>
-        </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
-        </Form>
-      </Navbar> */}
     </>
   );
 }
