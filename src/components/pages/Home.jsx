@@ -3,19 +3,22 @@ import Post from "../Post";
 import PropTypes from "prop-types";
 import Header from "../Header";
 import { Container } from "react-bootstrap";
+import { Grid } from "@material-ui/core";
 
 function Home({ articles }) {
   return (
     <>
       <Header />
-      <Container>
+      <Grid container spacing={2} alignItems="stretch">
         <div className="posts">
           {articles &&
             articles.map((post, i) => (
-              <Post key={`${i}_${post.author}`} {...post} />
+              <Grid key={`${i}_${post.title}`} item xs={12} sm={4}>
+                <Post key={`${i}_${post.author}`} {...post} />
+              </Grid>
             ))}
         </div>
-      </Container>
+      </Grid>
     </>
   );
 }
