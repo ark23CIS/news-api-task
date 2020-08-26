@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 function articles(state = [], action) {
   switch (action.type) {
     case "SET_NEWS":
@@ -11,16 +9,4 @@ function articles(state = [], action) {
   return state;
 }
 
-function query(state = '', action) {
-  switch (action.type) {
-    case "SET_QUERY":
-      state = action.payload;
-      break;
-    default:
-      break;
-  }
-  return state;
-}
-
-export default combineReducers({articles, query})
-
+export default articles;

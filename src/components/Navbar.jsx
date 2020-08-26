@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
-import { fetchNews, setQuery } from "../redux/actions";
+import { fetchNews } from "../redux/actions";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -79,29 +79,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerRight() {
+export default function Navbar() {
   const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articles);
+  const [activePage, setActivePage] = React.useState("home");
   const searchRef = React.useRef();
   const onChange = React.useCallback(
     (e) => {
       e.preventDefault();
       var key = e.keyCode || e.which;
       if (key !== 13) return;
-      console.log(e.target.value, articles);
-      dispatch(setQuery(e.target.value));
+      console.log(
+        `${activePage === "home" ? "general" : activePage}&q=${e.target.value
+          .split(new RegExp(`[ ,.?!:;]`))
+          .filter((val) => val !== "")
+          .join("%20")}`
+      );
+      dispatch(
+        fetchNews(
+          `${activePage === "home" ? "general" : activePage}&q=${e.target.value
+            .split(new RegExp(`[ ,.?!:;]`))
+            .filter((val) => val !== "")
+            .join("%20")}`
+        )
+      );
     },
-    [dispatch, articles]
+    [dispatch, activePage]
   );
   const onClickCategory = React.useCallback(
     (e) => {
-      dispatch(setQuery(""));
       searchRef.current.value = "";
       let current = Array.from(
         e.currentTarget.childNodes
       )[0].innerHTML.toLowerCase();
-      if (current === "home") return;
-      dispatch(fetchNews(current));
+      setActivePage(current);
+      dispatch(fetchNews(current === "home" ? "general" : current));
     },
     [dispatch]
   );
