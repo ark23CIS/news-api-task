@@ -16,7 +16,6 @@ class App extends React.PureComponent {
     input = input.toLowerCase().split(new RegExp(`[ ${dividers}]`));
     return articles.reduce((p,c) => {
       let words = `${c.title} ${c.content} ${c.author}`.toLowerCase().split(new RegExp(`[ ${dividers}]`));
-      console.log(words)
       let counter = 0;
       for (let i = 0; i < input.length; i++) {
         if (words.includes(input[i])) counter++;

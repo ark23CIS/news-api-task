@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "../Post";
 import PropTypes from "prop-types";
-import Header from "../Header";
+import Header from "../Navbar";
 import { Container } from "react-bootstrap";
 import { Grid } from "@material-ui/core";
 
