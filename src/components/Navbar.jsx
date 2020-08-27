@@ -17,8 +17,14 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import HealthIcon from "@material-ui/icons/LocalHospital";
+import BusinessIcon from "@material-ui/icons/Business";
+import SportsIcon from "@material-ui/icons/SportsSoccer";
+import HomeIcon from "@material-ui/icons/Home";
+import EntertainmentIcon from "@material-ui/icons/SportsEsports";
+import TechnologyIcon from "@material-ui/icons/Computer";
+import ScienceIcon from "@material-ui/icons/School";
+import { green, red, grey, purple } from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
@@ -186,22 +192,48 @@ export default function Navbar() {
         </div>
         <Divider />
         <List>
-          {[
-            "Home",
-            "Business",
-            "Entertainment",
-            "Health",
-            "Science",
-            "Sports",
-            "Technology",
-          ].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} onClick={onClickCategory} />
-            </ListItem>
-          ))}
+          <ListItem button key={"Home"}>
+            <ListItemIcon>
+              <HomeIcon color="action" />
+            </ListItemIcon>
+            <ListItemText primary={"Home"} onClick={onClickCategory} />
+          </ListItem>
+          <ListItem button key={"Business"}>
+            <ListItemIcon>
+              <BusinessIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText primary={"Business"} onClick={onClickCategory} />
+          </ListItem>
+          <ListItem button key={"Science"}>
+            <ListItemIcon>
+              <ScienceIcon color="secondary" />
+            </ListItemIcon>
+            <ListItemText primary={"Science"} onClick={onClickCategory} />
+          </ListItem>
+          <ListItem button key={"Entertainment"}>
+            <ListItemIcon>
+              <EntertainmentIcon style={{ color: green[500] }} />
+            </ListItemIcon>
+            <ListItemText primary={"Entertainment"} onClick={onClickCategory} />
+          </ListItem>
+          <ListItem button key={"Health"}>
+            <ListItemIcon>
+              <HealthIcon style={{ color: red[500] }} />
+            </ListItemIcon>
+            <ListItemText primary={"Health"} onClick={onClickCategory} />
+          </ListItem>
+          <ListItem button key={"Sports"}>
+            <ListItemIcon>
+              <SportsIcon style={{ color: grey[900] }} />
+            </ListItemIcon>
+            <ListItemText primary={"Sports"} onClick={onClickCategory} />
+          </ListItem>
+          <ListItem button key={"Technology"}>
+            <ListItemIcon>
+              <TechnologyIcon style={{ color: purple[600] }} />
+            </ListItemIcon>
+            <ListItemText primary={"Technology"} onClick={onClickCategory} />
+          </ListItem>
         </List>
       </Drawer>
     </div>
