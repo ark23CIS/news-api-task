@@ -11,7 +11,7 @@ function Post({ title, content, author, publishedAt, urlToImage }) {
         <Card.Text className="card__item">{content}</Card.Text>
         <Card.Subtitle className="card__item">{author}</Card.Subtitle>
         <Card.Subtitle className="card__date">
-          {(publishedAt) ? new Date(publishedAt).toUTCString(): ''}
+          {publishedAt ? new Date(publishedAt).toUTCString() : ""}
         </Card.Subtitle>
       </Card>
     </div>
@@ -23,6 +23,7 @@ Post.propTypes = {
   content: PropTypes.string,
   author: PropTypes.string,
   publishedAt: PropTypes.string,
+  urlToImage: PropTypes.string,
 };
 
 export default Post;

@@ -2,10 +2,13 @@ import axios from "axios";
 import { URL } from "../../storage.json";
 
 const filterProperties = (articles) =>
-  articles.reduce((p, c) => {
-    const { title, content, author, publishedAt, urlToImage } = c;
-    return [...p, { title, content, author, publishedAt, urlToImage }];
-  }, []);
+  articles.map(({ title, content, author, publishedAt, urlToImage }) => ({
+    title,
+    content,
+    author,
+    publishedAt,
+    urlToImage,
+  }));
 
 export const fetchNews = (category) => (dispatch) => {
   axios.get(`${URL}${category}`).then(({ data }) => {

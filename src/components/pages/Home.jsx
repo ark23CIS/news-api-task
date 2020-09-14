@@ -15,7 +15,7 @@ function Home({ articles }) {
             {articles &&
               articles.map((post, i) => (
                 <Grid key={`${i}_${post.title}`} item xs={12}>
-                  <Post key={`${i}_${post.author}`} {...post} />
+                  <Post {...post} />
                 </Grid>
               ))}
           </div>
